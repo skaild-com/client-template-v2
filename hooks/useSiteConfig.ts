@@ -12,17 +12,14 @@ export interface SiteConfig {
     address: {
       street: string;
       city: string;
-      state?: string;
       zip: string;
     };
     hours: {
       weekdays: string;
       weekends: string;
     };
-    subscription_status: string;
-    subscription_plan: string;
   };
-  content?: {
+  content: {
     hero: {
       title: string;
       subtitle: string;
@@ -34,17 +31,31 @@ export interface SiteConfig {
       };
     };
     services: Array<{
-      title: string;
-      description: string;
-      imageUrl: string;
       icon: string;
+      title: string;
+      imageUrl: string;
+      description: string;
     }>;
     features: Array<{
-      title: string;
-      description: string;
-      imageUrl: string;
       icon: string;
+      title: string;
+      imageUrl: string;
+      description: string;
     }>;
+    contact: {
+      email: string;
+      phone: string;
+      address: string;
+    };
+  };
+  theme_config: {
+    colors: {
+      text: string;
+      accent: string;
+      primary: string;
+      secondary: string;
+      background: string;
+    };
   };
 }
 
@@ -57,11 +68,10 @@ export function useSiteConfig() {
     async function loadConfig() {
       try {
         const hostname = window.location.hostname;
-
-        // Pour le développement local, utiliser un domaine de test
         let searchDomain = hostname;
+
         if (hostname === "localhost" || hostname === "127.0.0.1") {
-          searchDomain = "plumber.skaild.com"; // Domaine de test
+          searchDomain = "plumber.skaild.com";
         } else if (hostname.includes(".vercel.app")) {
           const siteName = hostname.split(".")[0];
           searchDomain = `${siteName}.skaild.com`;
@@ -71,17 +81,14 @@ export function useSiteConfig() {
           .from("sites")
           .select(
             `
-            domain,
-            status,
+            *,
             business_profiles (
               name,
               phone,
               email,
               business_type,
               address,
-              hours,
-              subscription_status,
-              subscription_plan
+              hours
             )
           `
           )
@@ -90,8 +97,7 @@ export function useSiteConfig() {
 
         if (fetchError) throw fetchError;
 
-        // Formater les données pour correspondre à la structure SiteConfig
-        const formattedConfig: SiteConfig = {
+        setConfig({
           business: {
             name: site.business_profiles.name,
             phone: site.business_profiles.phone,
@@ -99,29 +105,10 @@ export function useSiteConfig() {
             businessType: site.business_profiles.business_type,
             address: site.business_profiles.address,
             hours: site.business_profiles.hours,
-            subscription_status: site.business_profiles.subscription_status,
-            subscription_plan: site.business_profiles.subscription_plan,
           },
-          // Pour l'instant, le contenu est vide car il n'est pas dans la base de données
-          content: {
-            hero: {
-              title: `Welcome to ${site.business_profiles.name}`,
-              subtitle: `Professional ${site.business_profiles.business_type} services`,
-              backgroundUrl:
-                "https://images.unsplash.com/photo-1509440159596-0249088772ff",
-              illustrationUrl:
-                "https://images.unsplash.com/photo-1509440159596-0249088772ff",
-              cta: {
-                primary: "Contact Us",
-                secondary: "Our Services",
-              },
-            },
-            services: [],
-            features: [],
-          },
-        };
-
-        setConfig(formattedConfig);
+          content: site.content,
+          theme_config: site.theme_config,
+        });
       } catch (err) {
         setError(err as Error);
       } finally {
