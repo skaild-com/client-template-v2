@@ -174,6 +174,13 @@ export function useSiteConfig() {
           return;
         }
 
+        if (hostname.includes("vercel.app")) {
+          const subdomain = hostname.split(".")[0];
+          searchDomain = `${subdomain}.skaild.com`;
+        }
+
+        console.log("Searching for domain:", searchDomain);
+
         const { data: site, error: fetchError } = await supabase
           .from("sites")
           .select(
