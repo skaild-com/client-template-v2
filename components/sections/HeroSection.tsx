@@ -1,9 +1,10 @@
 import Image from "next/image";
 import { SiteConfig } from "@/hooks/useSiteConfig";
+import { ThemeStyles } from "@/types/theme";
 
 interface HeroSectionProps {
   config: SiteConfig;
-  styles: any;
+  styles: ThemeStyles;
 }
 
 export function HeroSection({ config, styles }: HeroSectionProps) {

@@ -1,9 +1,10 @@
 import { ContactCard } from "@/components/ui/cards/ContactCard";
 import { SiteConfig } from "@/hooks/useSiteConfig";
+import { ThemeStyles } from "@/types/theme";
 
 interface ContactSectionProps {
   config: SiteConfig;
-  styles: any;
+  styles: ThemeStyles;
 }
 
 export function ContactSection({ config, styles }: ContactSectionProps) {

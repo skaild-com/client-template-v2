@@ -1,9 +1,10 @@
 import { FeatureCard } from "@/components/ui/cards/FeatureCard";
 import { SiteConfig } from "@/hooks/useSiteConfig";
+import { ThemeStyles } from "@/types/theme";
 
 interface FeaturesSectionProps {
   config: SiteConfig;
-  styles: any;
+  styles: ThemeStyles;
 }
 
 export function FeaturesSection({ config, styles }: FeaturesSectionProps) {

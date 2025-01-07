@@ -3,6 +3,104 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 
+const defaultConfig: SiteConfig = {
+  business: {
+    name: "Plumber Pro Services",
+    phone: "(555) 123-4567",
+    email: "contact@plumberpro.com",
+    businessType: "Plumbing",
+    address: {
+      street: "123 Main Street",
+      city: "Anytown",
+      zip: "12345",
+    },
+    hours: {
+      weekdays: "8:00 AM - 6:00 PM",
+      weekends: "9:00 AM - 4:00 PM",
+    },
+  },
+  content: {
+    hero: {
+      title: "Professional Plumbing Services",
+      subtitle: "Expert plumbing solutions for your home and business",
+      backgroundUrl:
+        "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1",
+      illustrationUrl: "https://illustrations.com/plumber.svg",
+      cta: {
+        primary: "Get Started",
+        secondary: "Learn More",
+      },
+    },
+    services: [
+      {
+        icon: "wrench",
+        title: "Emergency Repairs",
+        imageUrl:
+          "https://images.unsplash.com/photo-1565219640633-28d0ce3c6c3a",
+        description: "24/7 emergency plumbing repair services",
+      },
+      {
+        icon: "shower",
+        title: "Bathroom Remodeling",
+        imageUrl:
+          "https://images.unsplash.com/photo-1584622650111-993a426fbf0a",
+        description: "Complete bathroom renovation and installation",
+      },
+      {
+        icon: "pipe",
+        title: "Pipe Services",
+        imageUrl:
+          "https://images.unsplash.com/photo-1542013936693-884638332954",
+        description: "Installation and repair of all types of pipes",
+      },
+    ],
+    features: [
+      {
+        icon: "clock",
+        title: "24/7 Service",
+        imageUrl:
+          "https://images.unsplash.com/photo-1511578314322-379afb476865",
+        description: "Available around the clock for emergencies",
+      },
+      {
+        icon: "shield",
+        title: "Licensed & Insured",
+        imageUrl:
+          "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40",
+        description: "Fully certified professional plumbers",
+      },
+      {
+        icon: "star",
+        title: "5-Star Service",
+        imageUrl:
+          "https://images.unsplash.com/photo-1572947650440-e8a97ef053b2",
+        description: "Consistently rated 5 stars by our customers",
+      },
+      {
+        icon: "dollarSign",
+        title: "Fair Pricing",
+        imageUrl:
+          "https://images.unsplash.com/photo-1580048915913-4f8f5cb481c4",
+        description: "Transparent pricing with no hidden fees",
+      },
+    ],
+    contact: {
+      email: "contact@plumberpro.com",
+      phone: "(555) 123-4567",
+      address: "123 Main Street, Anytown",
+    },
+  },
+  theme_config: {
+    colors: {
+      text: "#1a1a1a",
+      accent: "#3b82f6",
+      primary: "#2563eb",
+      secondary: "#1d4ed8",
+      background: "#ffffff",
+    },
+  },
+};
+
 export interface SiteConfig {
   business: {
     name: string;
@@ -71,10 +169,9 @@ export function useSiteConfig() {
         let searchDomain = hostname;
 
         if (hostname === "localhost" || hostname === "127.0.0.1") {
-          searchDomain = "plumber.skaild.com";
-        } else if (hostname.includes(".vercel.app")) {
-          const siteName = hostname.split(".")[0];
-          searchDomain = `${siteName}.skaild.com`;
+          setConfig(defaultConfig);
+          setLoading(false);
+          return;
         }
 
         const { data: site, error: fetchError } = await supabase

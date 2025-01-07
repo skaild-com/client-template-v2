@@ -1,10 +1,11 @@
 import { Icons } from "@/components/ui/icons";
+import { ThemeStyles } from "@/types/theme";
 
 interface ContactCardProps {
   icon: string;
   title: string;
   content: string;
-  styles: any;
+  styles: ThemeStyles;
 }
 
 export function ContactCard({

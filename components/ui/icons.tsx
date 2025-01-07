@@ -1,6 +1,6 @@
-import { Phone, Mail, MapPin, type Icon as LucideIcon } from "lucide-react";
+import { Phone, Mail, MapPin, LucideIcon } from "lucide-react";
 
-export type Icon = LucideIcon;
+export type IconComponent = LucideIcon;
 
 export const Icons = {
   phone: Phone,

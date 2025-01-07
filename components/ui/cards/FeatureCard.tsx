@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Icons } from "@/components/ui/icons";
+import { ThemeStyles } from "@/types/theme";
 
 interface FeatureCardProps {
   feature: {
@@ -8,7 +9,7 @@ interface FeatureCardProps {
     imageUrl: string;
     description: string;
   };
-  styles: any;
+  styles: ThemeStyles;
 }
 
 export function FeatureCard({ feature, styles }: FeatureCardProps) {

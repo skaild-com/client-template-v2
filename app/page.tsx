@@ -1,6 +1,6 @@
 "use client";
 
-import { useSiteConfig } from "@/hooks/useSiteConfig";
+import { useSiteConfig, SiteConfig } from "@/hooks/useSiteConfig";
 import { useThemeStyles } from "@/hooks/useThemeStyles";
 import { ThemeProvider } from "@/app/providers/ThemeProvider";
 import { HeroSection } from "@/components/sections/HeroSection";

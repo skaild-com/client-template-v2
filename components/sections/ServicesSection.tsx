@@ -1,9 +1,10 @@
 import { ServiceCard } from "@/components/ui/cards/ServiceCard";
 import { SiteConfig } from "@/hooks/useSiteConfig";
+import { ThemeStyles } from "@/types/theme";
 
 interface ServicesSectionProps {
   config: SiteConfig;
-  styles: any;
+  styles: ThemeStyles;
 }
 
 export function ServicesSection({ config, styles }: ServicesSectionProps) {
