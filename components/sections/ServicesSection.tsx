@@ -7,6 +7,10 @@ interface ServicesSectionProps {
 }
 
 export function ServicesSection({ config, styles }: ServicesSectionProps) {
+  if (!config.content?.services?.length) {
+    return null;
+  }
+
   return (
     <section className="py-20" style={styles.section}>
       <div className="container mx-auto px-4">

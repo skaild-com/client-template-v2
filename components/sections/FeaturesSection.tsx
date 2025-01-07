@@ -7,6 +7,10 @@ interface FeaturesSectionProps {
 }
 
 export function FeaturesSection({ config, styles }: FeaturesSectionProps) {
+  if (!config.content?.features?.length) {
+    return null;
+  }
+
   return (
     <section
       className="py-20"

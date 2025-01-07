@@ -7,10 +7,14 @@ interface HeroSectionProps {
 }
 
 export function HeroSection({ config, styles }: HeroSectionProps) {
+  if (!config.content?.hero) {
+    return null;
+  }
+
   return (
     <section className="relative min-h-[80vh]" style={styles.section}>
       <div className="absolute inset-0 z-0">
-        {config.content?.hero?.backgroundUrl && (
+        {config.content.hero.backgroundUrl && (
           <Image
             src={config.content.hero.backgroundUrl}
             alt="Background"

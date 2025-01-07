@@ -20,9 +20,21 @@ function NotFoundState() {
   return <div className="p-4">Site not found</div>;
 }
 
+function MainContent({ config }: { config: SiteConfig }) {
+  const styles = useThemeStyles();
+
+  return (
+    <main>
+      <HeroSection config={config} styles={styles} />
+      <ServicesSection config={config} styles={styles} />
+      <FeaturesSection config={config} styles={styles} />
+      <ContactSection config={config} styles={styles} />
+    </main>
+  );
+}
+
 export default function HomePage() {
   const { config, loading, error } = useSiteConfig();
-  const styles = useThemeStyles();
 
   if (loading) return <LoadingState />;
   if (error) return <ErrorState error={error} />;
@@ -30,12 +42,7 @@ export default function HomePage() {
 
   return (
     <ThemeProvider config={config}>
-      <main>
-        <HeroSection config={config} styles={styles} />
-        <ServicesSection config={config} styles={styles} />
-        <FeaturesSection config={config} styles={styles} />
-        <ContactSection config={config} styles={styles} />
-      </main>
+      <MainContent config={config} />
     </ThemeProvider>
   );
 }
