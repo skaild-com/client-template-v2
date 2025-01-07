@@ -1,5 +1,5 @@
 "use client";
-
+// TODO: Add a hook to get the site config from the database
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 
