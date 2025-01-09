@@ -26,7 +26,7 @@ export function FeaturesSection({ config, styles }: FeaturesSectionProps) {
         </div>
 
         <ScrollArea className="w-full">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pb-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pb-8">
             {config.content.features.map((feature, index) => (
               <FeatureCard key={index} feature={feature} styles={styles} />
             ))}

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Icons } from "@/components/ui/icons";
 import { ThemeStyles } from "@/types/theme";
+import { Card, CardHeader, CardContent } from "@/components/ui/card";
 
 interface FeatureCardProps {
   feature: {
@@ -16,31 +17,33 @@ export function FeatureCard({ feature, styles }: FeatureCardProps) {
   const Icon = Icons[feature.icon as keyof typeof Icons];
 
   return (
-    <div className="group" style={styles.card}>
-      <div className="relative h-40 w-full overflow-hidden rounded-t-lg">
+    <Card
+      className="overflow-hidden group hover:shadow-lg transition-all duration-300"
+      style={styles.card}
+    >
+      <div className="relative h-48 w-full">
         <Image
           src={feature.imageUrl}
           alt={feature.title}
           fill
-          className="object-cover transition-transform duration-300 group-hover:scale-105"
-          quality={75}
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          quality={85}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/30" />
-        <div className="absolute top-4 left-4 flex items-center gap-2 bg-white/90 rounded-full px-3 py-1">
-          {Icon && (
-            <div
-              className="rounded-full p-1"
-              style={{ color: styles.accent.color }}
-            >
-              <Icon className="h-4 w-4" />
-            </div>
-          )}
-          <span className="text-sm font-medium">{feature.title}</span>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      </div>
+
+      <CardHeader className="space-y-1">
+        <div className="flex items-center gap-3">
+          <div className="rounded-full p-2 bg-primary/10">
+            {Icon && <Icon className="h-5 w-5 text-primary" />}
+          </div>
+          <h3 className="text-xl font-bold">{feature.title}</h3>
         </div>
-      </div>
-      <div className="p-4">
-        <p className="text-sm text-gray-600">{feature.description}</p>
-      </div>
-    </div>
+      </CardHeader>
+
+      <CardContent>
+        <p className="text-muted-foreground">{feature.description}</p>
+      </CardContent>
+    </Card>
   );
 }
