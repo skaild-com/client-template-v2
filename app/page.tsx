@@ -7,9 +7,26 @@ import { HeroSection } from "@/components/sections/HeroSection";
 import { ServicesSection } from "@/components/sections/ServicesSection";
 import { FeaturesSection } from "@/components/sections/FeaturesSection";
 import { ContactSection } from "@/components/sections/ContactSection";
+import { FooterSection } from "@/components/sections/FooterSection";
 
 function LoadingState() {
-  return <div className="p-4">Loading...</div>;
+  return (
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="space-y-8 w-full max-w-md">
+        {/* Logo skeleton */}
+        <div className="h-16 w-16 rounded-full bg-gray-200 animate-pulse mx-auto" />
+
+        {/* Title skeletons */}
+        <div className="space-y-3">
+          <div className="h-8 bg-gray-200 rounded animate-pulse" />
+          <div className="h-4 bg-gray-200 rounded animate-pulse w-3/4 mx-auto" />
+        </div>
+
+        {/* Loading text */}
+        <p className="text-center text-gray-500">Loading your site...</p>
+      </div>
+    </div>
+  );
 }
 
 function ErrorState({ error }: { error: Error }) {
@@ -29,6 +46,7 @@ function MainContent({ config }: { config: SiteConfig }) {
       <ServicesSection config={config} styles={styles} />
       <FeaturesSection config={config} styles={styles} />
       <ContactSection config={config} styles={styles} />
+      <FooterSection config={config} styles={styles} />
     </main>
   );
 }

@@ -1,10 +1,10 @@
-import { useTheme } from "@/app/providers/ThemeProvider";
 import { ThemeStyles } from "@/types/theme";
+import { useSiteConfig } from "@/hooks/useSiteConfig";
 
 export function useThemeStyles(): ThemeStyles {
-  const config = useTheme();
+  const { config } = useSiteConfig();
 
-  if (!config.theme_config) {
+  if (!config?.theme_config) {
     return {
       text: {},
       background: {},

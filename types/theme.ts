@@ -1,41 +1,13 @@
 export interface ThemeStyles {
-  text: {
-    color?: string;
-  };
-  background: {
-    backgroundColor?: string;
-  };
-  primary: {
-    backgroundColor?: string;
-    color?: string;
-  };
-  secondary: {
-    backgroundColor?: string;
-    color?: string;
-  };
-  accent: {
-    color?: string;
-  };
-  section: {
-    backgroundColor?: string;
-    color?: string;
-  };
+  text: React.CSSProperties;
+  background: React.CSSProperties;
+  primary: React.CSSProperties;
+  secondary: React.CSSProperties;
+  accent: React.CSSProperties;
+  section: React.CSSProperties;
   button: {
-    primary: {
-      backgroundColor?: string;
-      color?: string;
-      transition?: string;
-    };
-    secondary: {
-      backgroundColor?: string;
-      color?: string;
-      transition?: string;
-    };
+    primary: React.CSSProperties;
+    secondary: React.CSSProperties;
   };
-  card: {
-    backgroundColor?: string;
-    borderRadius?: string;
-    boxShadow?: string;
-    transition?: string;
-  };
+  card: React.CSSProperties;
 }
